@@ -1,4 +1,4 @@
-# fili-chip-8
+# fillie-chip-8
 A basic implementation of the CHIP-8 emulator, written in C++ using SDL2.
 
 SDL2 is required, to compile simply type in: 
