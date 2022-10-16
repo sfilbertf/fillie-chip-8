@@ -432,3 +432,12 @@ void Chip8::ifx65() {
         v[i] = mem[idx + i];
     }
 }
+
+/**
+ * ???? - NOP
+ * Does nothing. 
+ 
+ * The nop (no operation) opcode safeguards 
+ * the interpreter (to a certain degree) against nonexistent/illegal opcodes.
+ */
+void Chip8::inop() { }
