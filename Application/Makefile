@@ -16,7 +16,7 @@
 
 EXE = bin
 CHIP8_DIR = ../Chip8
-IMGUI_DIR = imgui
+IMGUI_DIR = DearImGui
 SOURCES = $(CHIP8_DIR)/Chip8.cpp $(CHIP8_DIR)/Chip8InstructionSet.cpp
 SOURCES += Application.cpp 
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
