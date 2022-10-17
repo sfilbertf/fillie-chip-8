@@ -36,7 +36,7 @@ void Chip8::resetChip8() {
     soundTimer = 0;
 
     memset(v, 0, 16);
-    memset(stack, 0, 16);
+    memset(stack, 0, 16 * 2);
     memset(keypad, 0, 16);
 
     memset(mem, 0, 4 * 1024);

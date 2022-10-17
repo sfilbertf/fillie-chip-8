@@ -180,7 +180,7 @@ void Chip8::i8xy5() {
  * If the least-significant bit of Vx is 1, then VF is set to 1, otherwise 0. Then Vx is divided by 2.
  */
 void Chip8::i8xy6() {
-    if(v[x] & 0x01 == 1) v[0xf] = 1;
+    if((v[x] & 0x01) == 1) v[0xf] = 1;
     else v[0xf] = 0;
 
     v[x] >>= 1;
