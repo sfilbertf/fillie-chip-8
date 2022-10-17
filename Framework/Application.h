@@ -1,8 +1,8 @@
 
-class Framework {
+class Application {
     public:
-        Framework();
-        ~Framework();
+        Application();
+        ~Application();
 
     public:
         void run();
