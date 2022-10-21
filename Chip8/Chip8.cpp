@@ -14,7 +14,6 @@ void Chip8::loadRom(std::string romFile) {
 
     // Read the ROM into a buffer
     char buffer[romSize];
-    // std::cout << "Reading ROM, " << (romSize)/2 << " instructions found" << std::endl;
     rom.read(buffer, romSize);
 
     // Load the ROM into the main memory starting from address 0x200

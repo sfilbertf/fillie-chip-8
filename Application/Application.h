@@ -12,6 +12,8 @@
 #include <SDL_opengl.h>
 #endif
 
+#include "../Chip8/Chip8.h"
+
 class Application {
     public:
         Application() {
@@ -114,11 +116,22 @@ class Application {
 
         bool eventHandler();
 
+    // Chip-8
+    public:
+        Chip8 emu;
+
+    // Emulator
     public:
         SDL_Window* window;
         SDL_GLContext gl_context;
 
         ImVec4 clearColor = ImVec4(0, 0, 0, 0);
-        bool show_demo_window = true;
-        bool show_another_window = false;
+
+    // Keys
+    public:
+        void setKeyState(SDL_Event event);
+
+    // Display
+    public:
+        void display();
 };

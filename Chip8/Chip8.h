@@ -44,7 +44,7 @@ class Chip8 {
         uint8_t thirdNibble;
         uint8_t fourthNibble;
 
-    // Chip8 constructor and destructor
+    // Chip-8 constructor and destructor
     public:
         Chip8() {
             
