@@ -48,9 +48,11 @@ void Chip8::resetChip8() {
 }
 
 void Chip8::initOpcodeTable() {
+    for(int i = 0; i < 0xf; i++) table00e[i] = &Chip8::inop;
     table00e[0x0] = &Chip8::i00e0;
     table00e[0xe] = &Chip8::i00ee;
     
+    for(int i = 0; i < 0xe; i++) tableUnq[i] = &Chip8::inop;
     tableUnq[0x1] = &Chip8::i1nnn;
     tableUnq[0x2] = &Chip8::i2nnn;
     tableUnq[0x3] = &Chip8::i3xkk;
@@ -64,6 +66,7 @@ void Chip8::initOpcodeTable() {
     tableUnq[0xc] = &Chip8::icxkk;
     tableUnq[0xd] = &Chip8::idxyn;
     
+    for(int i = 0; i < 0xf; i++) table8xy[i] = &Chip8::inop;
     table8xy[0x0] = &Chip8::i8xy0;
     table8xy[0x1] = &Chip8::i8xy1;
     table8xy[0x2] = &Chip8::i8xy2;
@@ -74,9 +77,11 @@ void Chip8::initOpcodeTable() {
     table8xy[0x7] = &Chip8::i8xy7;
     table8xy[0xe] = &Chip8::i8xye;
     
+    for(int i = 0; i < 0xf; i++) tableex[i] = &Chip8::inop;
     tableex[0xE] = &Chip8::iex9e;
     tableex[0x1] = &Chip8::iexa1;
     
+    for(int i = 0; i < 0x66; i++) tablefx[i] = &Chip8::inop;
     tablefx[0x07] = &Chip8::ifx07;
     tablefx[0x0a] = &Chip8::ifx0a;
     tablefx[0x15] = &Chip8::ifx15;
@@ -108,15 +113,28 @@ void Chip8::decode() {
 }
 
 void Chip8::execute() {
-    if(firstNibble == 0x0) (this->*table00e[fourthNibble])();
+    if(firstNibble == 0x0) {
+        if(fourthNibble < 0xf)
+            (this->*table00e[fourthNibble])();
+    }
 
-    else if(firstNibble == 0x8) (this->*table8xy[fourthNibble])();
+    else if(firstNibble == 0x8) {
+        if(fourthNibble < 0xf)
+            (this->*table8xy[fourthNibble])();
+    }
 
-    else if(firstNibble == 0xe) (this->*tableex[fourthNibble])();
+    else if(firstNibble == 0xe) {
+        if(fourthNibble < 0xf)
+            (this->*tableex[fourthNibble])();
+    }
 
-    else if(firstNibble == 0xf) (this->*tablefx[thirdNibble << 4 | fourthNibble])();
+    else if(firstNibble == 0xf) {
+        uint8_t index = thirdNibble << 4 | fourthNibble;
+        if(index < 0x66)
+            (this->*tablefx[index])();
+    }
 
-    else if(firstNibble > 0x0 || firstNibble < 0xe) (this->*tableUnq[firstNibble])();
+    else if(firstNibble > 0x0 && firstNibble < 0xe) (this->*tableUnq[firstNibble])();
     
     else inop();
 }
