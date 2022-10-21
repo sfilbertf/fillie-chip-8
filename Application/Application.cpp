@@ -17,15 +17,46 @@ void Application::run() {
 
 void Application::startUp() {
     emu.resetChip8();
+    emu.initOpcodeTable();
     initTexture();
 
-    for(int i = 400; i < 416; i++) {
-        emu.disMem[i] = 1;
-    }
+    /**
+     * Test code
+     * 
+     */
+
+    emu.loadRom("tetris.ch8");
 }
 
 void Application::update() {
+    /**
+     * Test code
+     * 
+     */
+
+    int opcodesPerFrame = 10;
+    for(int i = 0; i < opcodesPerFrame; i++) {
+        emu.fetch();
+        emu.decode();
+        emu.execute();
+    }
+    if(emu.delayTimer > 0) emu.delayTimer--;
+    if(emu.soundTimer > 0) emu.soundTimer--;
+
+    ImGui::PushFont(quinqueFive);
+    ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+
     display();
+    registers();
+    status();
+    sprite();
+    execution();
+    stack();
+    
+    ImGui::PopStyleVar();
+    ImGui::PopStyleColor();
+    ImGui::PopFont();
 }
 
 void Application::setKeyState(SDL_Event event) {

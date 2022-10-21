@@ -23,13 +23,13 @@ void Application::updateTexture() {
         j = i * 3;
 
         if(emu.disMem[i] != 0) {
-            data[j + 0] = fgColor[0];
-            data[j + 1] = fgColor[1];
-            data[j + 2] = fgColor[2];
+            data[j + 0] = fgColoru[0];
+            data[j + 1] = fgColoru[1];
+            data[j + 2] = fgColoru[2];
         } else {
-            data[j + 0] = bgColor[0];
-            data[j + 1] = bgColor[1];
-            data[j + 2] = bgColor[2];
+            data[j + 0] = bgColoru[0];
+            data[j + 1] = bgColoru[1];
+            data[j + 2] = bgColoru[2];
         }
     }
 
@@ -43,8 +43,8 @@ void Application::display() {
     // ImGuiWindowFlags_NoMove, ImGuiWindowFlags_NoResize
     ImGuiIO& io = ImGui::GetIO();
     ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.35f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
-    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.50f, io.DisplaySize.y * 0.60f), ImGuiCond_Always);
-    ImGui::Begin("Display", NULL, ImGuiWindowFlags_NoTitleBar); 
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5125f, io.DisplaySize.y * 0.625f), ImGuiCond_Always);
+    ImGui::Begin("Display", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize); 
     
     ImGui::Image((void*)(intptr_t) texture, ImGui::GetWindowSize());
 

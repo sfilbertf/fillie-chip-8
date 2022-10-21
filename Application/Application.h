@@ -75,6 +75,9 @@ class Application {
             // Setup Platform/Renderer backends
             ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
             ImGui_ImplOpenGL3_Init(glsl_version);
+
+            // Load fonts
+            quinqueFive = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 25.0f);
         }
 
         ~Application() {
@@ -122,16 +125,41 @@ class Application {
     public:
         SDL_Window* window;
         SDL_GLContext gl_context;
+        ImFont* quinqueFive;
         
     // Display
     public:
-        uint8_t bgColor[3] = {0x26, 0x4b, 0x59};
-        uint8_t fgColor[3] = {0x99, 0xb0, 0xb6};
-        ImVec4 clearColor = ImVec4(bgColor[0]/255.0f, bgColor[1]/255.0f, bgColor[2]/255.0f, 1.0f);
+        uint8_t bgColoru[3] = {0x26, 0x4b, 0x59};
+        uint8_t fgColoru[3] = {0x99, 0xb0, 0xb6};
+
+        ImVec4 bgColorf = ImVec4(bgColoru[0]/255.0f, bgColoru[1]/255.0f, bgColoru[2]/255.0f, 1.0f);
+        ImVec4 fgColorf = ImVec4(fgColoru[0]/255.0f, fgColoru[1]/255.0f, fgColoru[2]/255.0f, 1.0f);
+
+        ImVec4 clearColor = bgColorf;
         
         GLuint texture;
         void initTexture();
         void updateTexture();
 
         void display();
+    
+    // Registers
+    public:
+        void registers();
+
+    // Status
+    public:
+        void status();
+
+    // Sprite
+    public:
+        void sprite();
+
+    // Execution
+    public:
+        void execution();
+
+    // Stack
+    public:
+        void stack();
 };
