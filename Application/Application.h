@@ -68,7 +68,6 @@ class Application {
             IMGUI_CHECKVERSION();
             ImGui::CreateContext();
             ImGuiIO& io = ImGui::GetIO(); (void)io;
-            io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // Enable docking 
 
             // Setup Dear ImGui style
             ImGui::StyleColorsDark();
@@ -94,8 +93,6 @@ class Application {
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplSDL2_NewFrame();
             ImGui::NewFrame();
-
-            ImGui::DockSpaceOverViewport(); // Create an explicit dock node covering the screen
         }
 
         void render() {
@@ -113,7 +110,8 @@ class Application {
         void run();
         void startUp();
         void update();
-
+        
+        void setKeyState(SDL_Event event);
         bool eventHandler();
 
     // Chip-8
@@ -124,14 +122,16 @@ class Application {
     public:
         SDL_Window* window;
         SDL_GLContext gl_context;
-
-        ImVec4 clearColor = ImVec4(0, 0, 0, 0);
-
-    // Keys
-    public:
-        void setKeyState(SDL_Event event);
-
+        
     // Display
     public:
+        uint8_t bgColor[3] = {0x26, 0x4b, 0x59};
+        uint8_t fgColor[3] = {0x99, 0xb0, 0xb6};
+        ImVec4 clearColor = ImVec4(bgColor[0]/255.0f, bgColor[1]/255.0f, bgColor[2]/255.0f, 1.0f);
+        
+        GLuint texture;
+        void initTexture();
+        void updateTexture();
+
         void display();
 };
