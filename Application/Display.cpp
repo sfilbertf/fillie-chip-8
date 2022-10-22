@@ -16,8 +16,6 @@ void Application::initTexture() {
 }
 
 void Application::updateTexture() {
-    glActiveTexture(texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
     uint8_t data[64 * 32 * 3];
 
     int j;
@@ -41,11 +39,11 @@ void Application::updateTexture() {
 void Application::display() {
     updateTexture();
 
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+    // ImGuiWindowFlags_NoMove, ImGuiWindowFlags_NoResize
     ImGuiIO& io = ImGui::GetIO();
     ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.35f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
-    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.6f), ImGuiCond_Always);
-
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5125f, io.DisplaySize.y * 0.625f), ImGuiCond_Always);
     ImGui::Begin("Display", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize); 
     
     ImGui::Image((void*)(intptr_t) texture, ImGui::GetWindowSize());

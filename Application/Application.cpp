@@ -18,16 +18,14 @@ void Application::run() {
 void Application::startUp() {
     emu.resetChip8();
     emu.initOpcodeTable();
-
     initTexture();
-    initTextureSprite();
 
     /**
      * Test code
      * 
      */
 
-    emu.loadRom("wall.ch8");
+    emu.loadRom("tetris.ch8");
 }
 
 void Application::update() {
