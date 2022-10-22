@@ -25,7 +25,7 @@ void Application::startUp() {
      * 
      */
 
-    emu.loadRom("tetris.ch8");
+    emu.loadRom("astrododge.ch8");
 }
 
 void Application::update() {
