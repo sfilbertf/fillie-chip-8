@@ -133,7 +133,5 @@ void Chip8::execute() {
             (this->*tablefx[index])();
     }
 
-    else if(firstNibble > 0x0 && firstNibble < 0xe) (this->*tableUnq[firstNibble])();
-    
-    else inop();
+    else (this->*tableUnq[firstNibble])();
 }

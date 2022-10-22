@@ -14,6 +14,8 @@
 
 #include "../Chip8/Chip8.h"
 
+#define BUF_SIZE 20
+
 class Application {
     public:
         Application() {
@@ -77,7 +79,8 @@ class Application {
             ImGui_ImplOpenGL3_Init(glsl_version);
 
             // Load fonts
-            quinqueFive = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 25.0f);
+            quinqueFiveText = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 25.0f);
+            quinqueFiveSubtext = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 21.25f);
         }
 
         ~Application() {
@@ -125,7 +128,8 @@ class Application {
     public:
         SDL_Window* window;
         SDL_GLContext gl_context;
-        ImFont* quinqueFive;
+        ImFont* quinqueFiveText;
+        ImFont* quinqueFiveSubtext;
         
     // Display
     public:
@@ -165,7 +169,10 @@ class Application {
         void sprite();
 
     // Execution
-    public:
+    public:;
+        char buf[BUF_SIZE];
+        void writeInstrToBuf(uint16_t addr); 
+
         void execution();
 
     // Stack

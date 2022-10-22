@@ -27,7 +27,7 @@ void Application::startUp() {
      * 
      */
 
-    emu.loadRom("invaders.ch8");
+    emu.loadRom("tetris.ch8");
 }
 
 void Application::update() {
@@ -46,9 +46,9 @@ void Application::update() {
     if(emu.delayTimer > 0) emu.delayTimer--;
     if(emu.soundTimer > 0) emu.soundTimer--;
 
-    ImGui::PushFont(quinqueFive);
+    ImGui::PushFont(quinqueFiveText);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);
-    // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    //ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
 
     display();
     registers();
@@ -57,7 +57,7 @@ void Application::update() {
     execution();
     stack();
     
-    // ImGui::PopStyleVar();
+    //ImGui::PopStyleVar();
     ImGui::PopStyleColor();
     ImGui::PopFont();
 }
