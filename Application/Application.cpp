@@ -18,14 +18,16 @@ void Application::run() {
 void Application::startUp() {
     emu.resetChip8();
     emu.initOpcodeTable();
-    initTexture();
+
+    initTextureDisplay();
+    initTextureSprite();
 
     /**
      * Test code
      * 
      */
 
-    emu.loadRom("astrododge.ch8");
+    emu.loadRom("invaders.ch8");
 }
 
 void Application::update() {
@@ -34,18 +36,19 @@ void Application::update() {
      * 
      */
 
-    int opcodesPerFrame = 10;
+    int opcodesPerFrame = 9;
     for(int i = 0; i < opcodesPerFrame; i++) {
         emu.fetch();
         emu.decode();
         emu.execute();
+        if(emu.firstNibble == 0xd) getSpriteData();
     }
     if(emu.delayTimer > 0) emu.delayTimer--;
     if(emu.soundTimer > 0) emu.soundTimer--;
 
     ImGui::PushFont(quinqueFive);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    // ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
 
     display();
     registers();
@@ -54,7 +57,7 @@ void Application::update() {
     execution();
     stack();
     
-    ImGui::PopStyleVar();
+    // ImGui::PopStyleVar();
     ImGui::PopStyleColor();
     ImGui::PopFont();
 }

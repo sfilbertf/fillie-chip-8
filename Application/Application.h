@@ -135,11 +135,13 @@ class Application {
         ImVec4 bgColorf = ImVec4(bgColoru[0]/255.0f, bgColoru[1]/255.0f, bgColoru[2]/255.0f, 1.0f);
         ImVec4 fgColorf = ImVec4(fgColoru[0]/255.0f, fgColoru[1]/255.0f, fgColoru[2]/255.0f, 1.0f);
 
+        ImVec4 tertColorf = ImVec4(0xf1/255.0f, 0x50/255.0f, 0x25/255.0f, 1.0f);
+
         ImVec4 clearColor = bgColorf;
         
-        GLuint texture;
-        void initTexture();
-        void updateTexture();
+        GLuint textureDisplay;
+        void initTextureDisplay();
+        void updateTextureDisplay();
 
         void display();
     
@@ -153,6 +155,13 @@ class Application {
 
     // Sprite
     public:
+        uint8_t spriteData[8 * 15];
+        void getSpriteData();
+
+        GLuint textureSprite;
+        void initTextureSprite();
+        void updateTextureSprite();
+
         void sprite();
 
     // Execution

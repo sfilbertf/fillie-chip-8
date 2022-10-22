@@ -1,8 +1,10 @@
 #include "Application.h"
 
-void Application::initTexture() {
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+void Application::initTextureDisplay() {
+    glGenTextures(1, &textureDisplay);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureDisplay);
 
     uint8_t data[64 * 32 * 3];
     memset(data, 0, 64 * 32 * 3);
@@ -13,9 +15,14 @@ void Application::initTexture() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, 64, 32, 0, GL_RGB, GL_UNSIGNED_BYTE, (void*) data);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Application::updateTexture() {
+void Application::updateTextureDisplay() {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureDisplay);
+
     uint8_t data[64 * 32 * 3];
 
     int j;
@@ -34,20 +41,22 @@ void Application::updateTexture() {
     }
 
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 64, 32, GL_RGB, GL_UNSIGNED_BYTE, (void*) data);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Application::display() {
-    updateTexture();
+    updateTextureDisplay();
 
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-    // ImGuiWindowFlags_NoMove, ImGuiWindowFlags_NoResize
     ImGuiIO& io = ImGui::GetIO();
     ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.35f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
     ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5125f, io.DisplaySize.y * 0.625f), ImGuiCond_Always);
-    ImGui::Begin("Display", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize); 
-    
-    ImGui::Image((void*)(intptr_t) texture, ImGui::GetWindowSize());
 
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+
+    ImGui::Begin("Display", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);     
+    ImGui::Image((void*)(intptr_t) textureDisplay, ImGui::GetWindowSize());
     ImGui::End();
+
     ImGui::PopStyleVar();
 }

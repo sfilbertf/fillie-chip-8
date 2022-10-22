@@ -1,13 +1,13 @@
 #include "Application.h"
 
-void Application::registers() {
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, bgColorf);
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(2.75f, 10.0f));
-    
+void Application::registers() {    
     ImGuiIO& io = ImGui::GetIO();
     ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.8275f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
     ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.275f), ImGuiCond_Always);
     
+    ImGui::PushStyleColor(ImGuiCol_WindowBg, bgColorf);
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(2.75f, 10.0f));
+
     ImGui::Begin("Registers", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize); 
     ImGui::BeginTable("Registers", 5);
     for(int i = 0; i < 4; i++) {
