@@ -153,6 +153,14 @@ class Application {
 
     // Sprite
     public:
+        uint8_t spriteData[8 * 15];
+
+        void getSpriteData();
+
+        GLuint textureSprite;
+        void initTextureSprite();
+        void updateTextureSprite();
+
         void sprite();
 
     // Execution
