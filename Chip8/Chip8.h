@@ -10,7 +10,6 @@
 #include <cstdlib>
 
 #define PROGRAM_START 0x200 // Starting address of a Chip-8 program in the memory
-#define FONTSET_START 0x50 // Starting address of the Chip-8 fontset in memory
 
 class Chip8 {
     // Chip-8 components
@@ -35,7 +34,7 @@ class Chip8 {
         uint8_t y;
         uint8_t n;
         uint8_t kk;
-        uint8_t nnn;
+        uint16_t nnn;
 
         uint16_t opcode;
 
@@ -104,11 +103,11 @@ class Chip8 {
 
     // Chip-8 instruction set opcode table
     public:
-        void (Chip8::*table00e[0xf])() = { &Chip8::inop };
-        void (Chip8::*tableUnq[0xe])() = { &Chip8::inop };
-        void (Chip8::*table8xy[0xf])() = { &Chip8::inop };
-        void (Chip8::*tableex[0xf])() = { &Chip8::inop };
-        void (Chip8::*tablefx[0x66])() = { &Chip8::inop };
+        void (Chip8::*table00e[0xf])();
+        void (Chip8::*tableUnq[0xe])();
+        void (Chip8::*table8xy[0xf])();
+        void (Chip8::*tableex[0xf])();
+        void (Chip8::*tablefx[0x66])();
     
     // Chip-8 fontset
     public:

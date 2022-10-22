@@ -152,7 +152,7 @@ void Chip8::i8xy4() {
     uint16_t temp = v[x] + v[y];
     
     uint8_t lo = temp & 0x00ff;
-    uint8_t hi = temp & 0xff00 >> 8;
+    uint8_t hi = (temp & 0xff00) >> 8;
 
     v[x] = lo;
 
@@ -180,7 +180,7 @@ void Chip8::i8xy5() {
  * If the least-significant bit of Vx is 1, then VF is set to 1, otherwise 0. Then Vx is divided by 2.
  */
 void Chip8::i8xy6() {
-    if((v[x] & 0x01) == 1) v[0xf] = 1;
+    if(((v[x] & 0x01) == 1)) v[0xf] = 1;
     else v[0xf] = 0;
 
     v[x] >>= 1;
@@ -206,7 +206,7 @@ void Chip8::i8xy7() {
  * If the most-significant bit of Vx is 1, then VF is set to 1, otherwise to 0. Then Vx is multiplied by 2.
  */
 void Chip8::i8xye() {
-    if(v[x] >> 7 == 1) v[0xf] = 1;
+    if((v[x] >> 7) == 1) v[0xf] = 1;
     else v[0xf] = 0;
 
     v[x] <<= 1;
@@ -284,13 +284,10 @@ void Chip8::idxyn() {
             
             if(xCurr > 63) break;
 
-            if(!v[0xf]) {
-                if( (currBit == 1) & (disMem[yCurr * 64 + xCurr] == 1) ) {
-                    v[0xf] = 1;
-                }
+            if(currBit) {
+                if(disMem[yCurr * 64 + xCurr] == 1) v[0xf] = 1;
+                disMem[yCurr * 64 + xCurr] ^= currBit;
             }
-
-            disMem[yCurr * 64 + xCurr] ^= currBit;
         }
     }
 }
@@ -393,7 +390,7 @@ void Chip8::ifx1e() {
  * See section 2.4, Display, for more information on the Chip-8 hexadecimal font.
  */
 void Chip8::ifx29() {
-    idx = FONTSET_START + (v[x] * 5);
+    idx = mem[v[x] * 5];
 }
 
 /**

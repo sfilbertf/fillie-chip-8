@@ -42,7 +42,7 @@ void Chip8::resetChip8() {
     memset(disMem, 0, 64 * 32);
 
     for(int i = 0; i < 80; i++) {
-        mem[FONTSET_START + i] = fontset[i];
+        mem[i] = fontset[i];
     }
 }
 
@@ -93,22 +93,22 @@ void Chip8::initOpcodeTable() {
 }
 
 void Chip8::fetch() {
-    opcode = mem[pc] << 8 | mem[pc + 1];
+    opcode = (mem[pc] << 8) | mem[pc + 1];
     pc += 2;
 }
 
 void Chip8::decode() {
-    x = opcode & 0x0f00 >> 8;
-    y = opcode & 0x00f0 >> 4;
+    x = (opcode & 0x0f00) >> 8;
+    y = (opcode & 0x00f0) >> 4;
     
     n = opcode & 0x000f;
     kk = opcode & 0x00ff;
     nnn = opcode & 0x0fff;
 
-    firstNibble = opcode & 0xf000 >> 12;
-    secondNibble = opcode & 0x0f00 >> 8;
-    thirdNibble = opcode & 0x00f0 >> 4;
-    fourthNibble = opcode & 0x000f;
+    firstNibble = (opcode & 0xf000) >> 12;
+    secondNibble = (opcode & 0x0f00) >> 8;
+    thirdNibble = (opcode & 0x00f0) >> 4;
+    fourthNibble = (opcode & 0x000f) >> 0;
 }
 
 void Chip8::execute() {
@@ -128,7 +128,7 @@ void Chip8::execute() {
     }
 
     else if(firstNibble == 0xf) {
-        uint8_t index = thirdNibble << 4 | fourthNibble;
+        uint8_t index = (thirdNibble << 4) | fourthNibble;
         if(index < 0x66)
             (this->*tablefx[index])();
     }
