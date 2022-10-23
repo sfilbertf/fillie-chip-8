@@ -8,9 +8,7 @@ void Application::run() {
         quit = eventHandler();
 
         setUpNewFrame();
-
         update();
-
         render();
     }
 }
@@ -35,7 +33,10 @@ void Application::update() {
         if(emu.firstNibble == 0xd) getSpriteData();
     }
     if(emu.delayTimer > 0) emu.delayTimer--;
-    if(emu.soundTimer > 0) emu.soundTimer--;
+    if(emu.soundTimer > 0) {
+        emu.soundTimer--;
+        Mix_PlayChannel(-1, beep, 0);
+    }
 
     ImGui::PushFont(quinqueFiveText);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);

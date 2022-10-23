@@ -10,6 +10,7 @@
 #include <SDL_opengles2.h>
 #else
 #include <SDL_opengl.h>
+#include <SDL_mixer.h>
 #endif
 
 #include "../Chip8/Chip8.h"
@@ -24,6 +25,10 @@ class Application {
             {
                 printf("SDL_Error: %s\n", SDL_GetError());
                 std::exit(1); // Indicate unsuccessful program termination
+            }
+
+            if (Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0) {
+                printf("SDL_mixer Error: %s\n", Mix_GetError());
             }
 
             // Decide GL+GLSL versions
@@ -79,8 +84,15 @@ class Application {
             ImGui_ImplOpenGL3_Init(glsl_version);
 
             // Load fonts
-            quinqueFiveText = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 25.0f);
-            quinqueFiveSubtext = io.Fonts->AddFontFromFileTTF("quinquefive.ttf", 21.25f);
+            quinqueFiveText = io.Fonts->AddFontFromFileTTF("Font/quinquefive.ttf", 25.0f);
+            quinqueFiveSubtext = io.Fonts->AddFontFromFileTTF("Font/quinquefive.ttf", 21.25f);
+
+            // Setup audio
+            beep = Mix_LoadWAV("Sound/beep.wav");
+            if(!beep) {
+                printf("Sound Error: %s\n", Mix_GetError());
+            }
+            Mix_Volume(-1, 16);
         }
 
         ~Application() {
@@ -134,6 +146,7 @@ class Application {
         SDL_GLContext gl_context;
         ImFont* quinqueFiveText;
         ImFont* quinqueFiveSubtext;
+        Mix_Chunk* beep;
         
     // Display
     public:
