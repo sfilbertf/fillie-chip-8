@@ -1,4 +1,4 @@
-FillieChip8!
+FillieChip8! (. . . an updated version)
 
 A CHIP-8 emulator (or I know, I know, interpreter) written in C++ using SDL, OpenGL and Dear ImGui.
 
