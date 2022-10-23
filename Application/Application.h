@@ -85,14 +85,14 @@ class Application {
 
             // Load fonts
             quinqueFiveText = io.Fonts->AddFontFromFileTTF("Font/quinquefive.ttf", 25.0f);
-            quinqueFiveSubtext = io.Fonts->AddFontFromFileTTF("Font/quinquefive.ttf", 21.25f);
+            quinqueFiveSubtext = io.Fonts->AddFontFromFileTTF("Font/quinquefive.ttf", 23.25f);
 
             // Setup audio
             beep = Mix_LoadWAV("Sound/beep.wav");
             if(!beep) {
                 printf("Sound Error: %s\n", Mix_GetError());
             }
-            Mix_Volume(-1, 16);
+            Mix_Volume(-1, 4);
         }
 
         ~Application() {
@@ -150,13 +150,13 @@ class Application {
         
     // Display
     public:
-        uint8_t bgColoru[3] = {0x26, 0x4b, 0x59};
-        uint8_t fgColoru[3] = {0x99, 0xb0, 0xb6};
+        uint8_t bgColoru[3] = {0x22, 0x63, 0x87};
+        uint8_t fgColoru[3] = {0xc5, 0xc9, 0xaf};
 
         ImVec4 bgColorf = ImVec4(bgColoru[0]/255.0f, bgColoru[1]/255.0f, bgColoru[2]/255.0f, 1.0f);
         ImVec4 fgColorf = ImVec4(fgColoru[0]/255.0f, fgColoru[1]/255.0f, fgColoru[2]/255.0f, 1.0f);
 
-        ImVec4 tertColorf = ImVec4(0xf1/255.0f, 0x50/255.0f, 0x25/255.0f, 1.0f);
+        ImVec4 tertColorf = ImVec4(0xff/255.0f, 0xa5/255.0f, 0x14/255.0f, 1.0f);
 
         ImVec4 clearColor = bgColorf;
         

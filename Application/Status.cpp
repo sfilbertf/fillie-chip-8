@@ -2,8 +2,9 @@
 
 void Application::status() {
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.125f, io.DisplaySize.y * 0.225f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
-    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.22575f, io.DisplaySize.y * 0.385f), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.1375f, io.DisplaySize.y * 0.225f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.22575f, io.DisplaySize.y * 0.3f), ImGuiCond_Always);
+
 
     ImGui::PushStyleColor(ImGuiCol_WindowBg, bgColorf);
     ImGui::PushFont(quinqueFiveSubtext);

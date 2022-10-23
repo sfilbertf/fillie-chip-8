@@ -2,7 +2,7 @@
 
 void Application::registers() {    
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.8275f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5375f, io.DisplaySize.y * 0.8545f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
     ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.275f), ImGuiCond_Always);
     
     ImGui::PushStyleColor(ImGuiCol_WindowBg, bgColorf);

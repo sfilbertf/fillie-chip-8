@@ -85,8 +85,8 @@ void Application::writeInstrToBuf(uint16_t addr) {
 
 void Application::execution() {
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.125f, io.DisplaySize.y * 0.7f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
-    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.225f, io.DisplaySize.y * 0.5f), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.13425f, io.DisplaySize.y * 0.70125f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.24f, io.DisplaySize.y * 0.545f), ImGuiCond_Always);
 
     ImGui::PushFont(quinqueFiveSubtext);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);

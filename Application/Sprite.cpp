@@ -61,7 +61,7 @@ void Application::sprite() {
     updateTextureSprite();
 
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.875f, io.DisplaySize.y * 0.19125), ImGuiCond_Always, ImVec2(0.5f,0.5f));
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.9175f, io.DisplaySize.y * 0.19125), ImGuiCond_Always, ImVec2(0.5f,0.5f));
     ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.125f, io.DisplaySize.y * 0.25f), ImGuiCond_Always);
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
