@@ -22,25 +22,16 @@ void Application::startUp() {
     initTextureDisplay();
     initTextureSprite();
 
-    /**
-     * Test code
-     * 
-     */
-
-    emu.loadRom("tetris.ch8");
+    romSize = emu.loadRom(rom);
 }
 
 void Application::update() {
-    /**
-     * Test code
-     * 
-     */
-
-    int opcodesPerFrame = 9;
     for(int i = 0; i < opcodesPerFrame; i++) {
         emu.fetch();
         emu.decode();
         emu.execute();
+
+        cycles++;
         if(emu.firstNibble == 0xd) getSpriteData();
     }
     if(emu.delayTimer > 0) emu.delayTimer--;
@@ -48,7 +39,7 @@ void Application::update() {
 
     ImGui::PushFont(quinqueFiveText);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);
-    //ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
 
     display();
     registers();
@@ -57,7 +48,7 @@ void Application::update() {
     execution();
     stack();
     
-    //ImGui::PopStyleVar();
+    ImGui::PopStyleVar();
     ImGui::PopStyleColor();
     ImGui::PopFont();
 }
@@ -224,8 +215,11 @@ bool Application::eventHandler() {
     return quit;  
 }
 
-int main() {
-    Application app;
+int main(int argc, char** argv) {
+    Application app; 
+    
+    app.rom = argv[1]; app.opcodesPerFrame = atoi(argv[2]);
+    
     app.run();
 }
 

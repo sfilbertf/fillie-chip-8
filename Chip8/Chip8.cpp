@@ -1,6 +1,6 @@
 #include "Chip8.h"
 
-void Chip8::loadRom(std::string romFile) {
+int Chip8::loadRom(std::string romFile) {
     // Construct an ifstream object and open file in binary mode for reading
     std::ifstream rom (romFile, std::ifstream::in | std::ifstream::binary);
     int romSize;
@@ -23,6 +23,8 @@ void Chip8::loadRom(std::string romFile) {
 
     // Close the ROM file
     rom.close();
+
+    return romSize;
 }
 
 void Chip8::resetChip8() {

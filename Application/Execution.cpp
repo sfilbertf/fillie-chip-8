@@ -85,8 +85,8 @@ void Application::writeInstrToBuf(uint16_t addr) {
 
 void Application::execution() {
     ImGuiIO& io = ImGui::GetIO();
-    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.125f, io.DisplaySize.y * 0.8250f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
-    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.245f, io.DisplaySize.y * 0.3f), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.125f, io.DisplaySize.y * 0.7f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x * 0.225f, io.DisplaySize.y * 0.5f), ImGuiCond_Always);
 
     ImGui::PushFont(quinqueFiveSubtext);
     ImGui::PushStyleColor(ImGuiCol_Text, fgColorf);
@@ -94,7 +94,7 @@ void Application::execution() {
 
     ImGui::Begin("Execution", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize); 
 
-    for(int i = -8; i < 12; i+= 2) {
+    for(int i = -16; i < 18; i+= 2) {
         writeInstrToBuf(emu.pc + i);
         if(i == 0) {
             ImGui::PushTextWrapPos();

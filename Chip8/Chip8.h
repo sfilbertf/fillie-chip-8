@@ -55,7 +55,7 @@ class Chip8 {
 
     // Helper methods to support emulation
     public:
-        void loadRom(std::string romFile); // Load the contents of the ROM to the main memory
+        int  loadRom(std::string romFile); // Load the contents of the ROM to the main memory
         void resetChip8(); // Reset the Chip-8 emulator
         void initOpcodeTable(); // Initialize the instruction set opcode table
 

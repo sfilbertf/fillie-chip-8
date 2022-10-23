@@ -123,7 +123,11 @@ class Application {
     // Chip-8
     public:
         Chip8 emu;
-
+        char* rom;
+        int romSize;
+        uint8_t opcodesPerFrame;
+        unsigned long long int cycles = 0;
+        
     // Emulator
     public:
         SDL_Window* window;
